@@ -10,7 +10,7 @@ import { signOut } from '@/lib/firebase/auth';
 
 export default function DashboardPage() {
   const { user, loading: authLoading } = useAuth();
-  const { usage, loading: usageLoading, refetch } = useUserUsage(user?.uid || null);
+  const { usage, loading: usageLoading } = useUserUsage(user?.uid || null);
   const router = useRouter();
 
   useEffect(() => {

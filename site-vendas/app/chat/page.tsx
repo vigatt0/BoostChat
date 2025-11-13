@@ -63,6 +63,7 @@ export default function ChatPage() {
         setIsTyping(false);
       });
 
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSocket(socketInstance);
 
       return () => {

@@ -33,8 +33,9 @@ export async function signUp(email: string, password: string, displayName?: stri
     await createUserDocument(user, displayName);
 
     return { user, error: null };
-  } catch (error: any) {
-    return { user: null, error: error.message };
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+    return { user: null, error: errorMessage };
   }
 }
 
@@ -43,8 +44,9 @@ export async function signIn(email: string, password: string) {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return { user: userCredential.user, error: null };
-  } catch (error: any) {
-    return { user: null, error: error.message };
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+    return { user: null, error: errorMessage };
   }
 }
 
@@ -61,8 +63,9 @@ export async function signInWithGoogle() {
     }
 
     return { user, error: null };
-  } catch (error: any) {
-    return { user: null, error: error.message };
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+    return { user: null, error: errorMessage };
   }
 }
 
@@ -71,8 +74,9 @@ export async function signOut() {
   try {
     await firebaseSignOut(auth);
     return { error: null };
-  } catch (error: any) {
-    return { error: error.message };
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+    return { error: errorMessage };
   }
 }
 
